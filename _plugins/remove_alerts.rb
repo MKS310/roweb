@@ -2,14 +2,15 @@
 # Author: Scott Chamberlain, @sckott
 # License: MIT
 
-require 'nokogiri'
+require 'oga'
 
 module Jekyll
   module RemoveAlerts
     def remove_alerts(input)
-      res = Nokogiri::HTML(input)
+    	res = Oga.parse_html(input)
+      # res = Nokogiri::HTML(input)
       res.xpath('//div[@role="alert"]').remove
-      res
+      res.to_xml
     end
   end
 end
